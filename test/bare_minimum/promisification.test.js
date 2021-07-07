@@ -89,6 +89,7 @@ describe('Promisification', function() {
       readFileAndMakeItFunnyAsync(__dirname + '/../files/file_to_read.txt')
         .then(function(funnyFile) {
           funnyFile.split('\n').forEach(function(line) {
+            console.log(`line: ${line}`);
             expect(line).to.contain('lol');
           });
           done();
