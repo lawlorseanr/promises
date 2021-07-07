@@ -16,9 +16,9 @@ describe('Collections', function() {
     var fileToWriteTo = __dirname + '/../files/file_to_write_to.txt';
 
     var filesToRead = [
-      __dirname + '/../files/file_to_read.txt',
-      __dirname + '/../files/file_two_read.txt',
-      __dirname + '/../files/file_three_read.txt'
+      __dirname + '/../files/file_to_read.txt', //This is a file to read
+      __dirname + '/../files/file_two_read.txt', //Yet another file
+      __dirname + '/../files/file_three_read.txt'//A file of three
     ];
 
     beforeEach(function() {
