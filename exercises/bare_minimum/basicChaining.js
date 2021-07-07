@@ -20,17 +20,6 @@ var getGitHubProfileAsync = promisificaion.getGitHubProfileAsync;
 var writeFileAsync = Promise.promisify(fs.writeFile);
 
 var fetchProfileAndWriteToFile = function(readFilePath, writeFilePath) {
-  // return pluckFirstLineFromFileAsync(readFilePath)
-  //   .then( profile => {
-  //     getGitHubProfileAsync(profile)
-  //       .then( response => {
-  //         var stringyResponse = JSON.stringify(response);
-  //         writeFileAsync(writeFilePath, stringyResponse, 'utf8')
-  //           .then( response => {
-  //             return console.log(`Done writing file (${response})`);
-  //           });
-  //       });
-  //   });
 
   return pluckFirstLineFromFileAsync(readFilePath)
     .then( profile => {
