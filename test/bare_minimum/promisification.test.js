@@ -2,7 +2,7 @@ var nock = require('nock');
 var expect = require('chai').expect;
 var Promise = require('bluebird');
 
-describe('Promisification', function() {
+xdescribe('Promisification', function() {
   var promisificaion = require('../../exercises/bare_minimum/promisification.js');
 
   describe('getGitHubProfileAsync', function() {

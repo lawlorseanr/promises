@@ -14,7 +14,6 @@ var getGitHubProfile = function (user, callback) {
   var options = {
     headers: { 'User-Agent': 'request' },
   };
-
   request.get(url, options, function (err, res, body) {
     if (err) {
       callback(err, null);
