@@ -9,6 +9,7 @@
  */
 var fs = require('fs');
 var Promise = require('bluebird');
+const path = require('path');
 var promiseConstructor = require('../../exercises/bare_minimum/promiseConstructor.js');
 const _ = require('underscore');
 var readFileAsync = Promise.promisify(fs.readFile);
@@ -16,23 +17,20 @@ var writeFileAsync = Promise.promisify(fs.writeFile);
 
 var combineFirstLineOfManyFiles = function(filePaths, writePath) {
 
-  var promises = [];
-  filePaths.forEach( file => {
-    var promise = new Promise( (resolve, reject) => {
-
-      readFileAsync(file)
-        .then( rawData => {
-          var data = rawData.toString().split('\n')[0];
-          resolve(data);
-        })
-        .catch( err => {
-          reject(new Error(`Error reading ${file}`));
-        });
-
-    });
-
-    promises.push(promise);
-
+  var promises = filePaths.map(file => {
+    return new Promise( (resolve, reject) => {
+      fs.readFile(file, (err, textRaw) => {
+        if (err) {
+          reject(new Error(`${err}`));
+        } else {
+          var id = path.basename(file, '.txt');
+          var text = textRaw.toString().split('\n')[0];
+          resolve(text);
+        }
+      });
+    })
+      .then( input => input )
+      .catch( err => console.error(err) );
   });
 
   return Promise.all(promises)
