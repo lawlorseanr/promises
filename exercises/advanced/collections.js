@@ -19,14 +19,16 @@ var combineFirstLineOfManyFiles = function(filePaths, writePath) {
   var promises = [];
   filePaths.forEach( file => {
     var promise = new Promise( (resolve, reject) => {
-      fs.readFile(file, (err, rawData) => {
-        if (err) {
-          reject(new Error(`Error reading ${file}`));
-        } else {
+
+      readFileAsync(file)
+        .then( rawData => {
           var data = rawData.toString().split('\n')[0];
           resolve(data);
-        }
-      });
+        })
+        .catch( err => {
+          reject(new Error(`Error reading ${file}`));
+        });
+
     });
 
     promises.push(promise);
